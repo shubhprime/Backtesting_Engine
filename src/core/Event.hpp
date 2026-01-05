@@ -1,7 +1,8 @@
 #pragma once
 
 enum class EventType {
-    MARKET
+    MARKET,
+    SIGNAL
 };
 
 struct Event {
