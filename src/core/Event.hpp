@@ -2,7 +2,9 @@
 
 enum class EventType {
     MARKET,
-    SIGNAL
+    SIGNAL,
+    ORDER,
+    FILL
 };
 
 struct Event {
