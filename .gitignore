@@ -1,2 +1,6 @@
 src/main
 engine
+.venv/
+equity_curve.csv
+__pycache__/
+*.pyc

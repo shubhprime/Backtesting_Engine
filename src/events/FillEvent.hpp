@@ -10,6 +10,7 @@ struct FillEvent : public Event {
     OrderType orderType;
     int quantity;
     double fillPrice;
+    double commission;
 
     FillEvent() {
         type = EventType::FILL;

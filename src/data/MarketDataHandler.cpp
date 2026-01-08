@@ -28,3 +28,7 @@ void MarketDataHandler::stream_next() {
 
     eventQueue.push(event);
 }
+
+bool MarketDataHandler::has_more() const {
+    return file.good();
+}

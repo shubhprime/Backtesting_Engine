@@ -13,6 +13,7 @@ class MarketDataHandler {
         );
 
         void stream_next();
+        bool has_more() const;
 
     private:
         std::ifstream file;

@@ -5,12 +5,11 @@
 
 #include "../core/EventQueue.hpp"
 #include "../events/MarketEvent.hpp"
-#include "../events/SignalEvent.hpp"
 #include "../events/OrderEvent.hpp"
 
 class MovingAverageStrategy {
     public:
-        MovingAverageStrategy(EventQueue& eventQueue, int window) : eventQueue(eventQueue), window(window) {}
+        MovingAverageStrategy(EventQueue& eventQueue, int window) : eventQueue(eventQueue), window(window), currentPosition(0) {}
 
         void onMarketEvent(const MarketEvent& event) {
             prices.push_back(event.price);
@@ -36,13 +35,15 @@ class MovingAverageStrategy {
             order->quantity = 10;
             order->referencePrice = event.price;
 
-            if(event.price > avg) {
+            if(event.price > avg  && currentPosition <= 0) {
                 order->orderType = OrderType::BUY;
-            } else {
+                eventQueue.push(order);
+                currentPosition = 1;
+            } else if(event.price < avg && currentPosition >= 0) {
                 order->orderType = OrderType::SELL;
+                eventQueue.push(order);
+                currentPosition = -1;
             }
-
-            eventQueue.push(order);
 
             // auto signal = std::make_shared<SignalEvent>();
             // signal->timeStamp = event.timeStamp;
@@ -60,4 +61,5 @@ class MovingAverageStrategy {
         EventQueue& eventQueue;
         int window;
         std::deque<double> prices;
+        int currentPosition;
 };

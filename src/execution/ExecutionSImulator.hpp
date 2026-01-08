@@ -8,7 +8,7 @@
 
 class ExecutionSimulator {
     public:
-        ExecutionSimulator(EventQueue& eventQueue) : eventQueue(eventQueue) {}
+        ExecutionSimulator(EventQueue& eventQueue, double commissionPerTrade) : eventQueue(eventQueue), commission(commissionPerTrade) {}
 
         void onOrderEvent(const OrderEvent& order) {
             auto fill = std::make_shared<FillEvent>();
@@ -16,10 +16,12 @@ class ExecutionSimulator {
             fill->orderType = order.orderType;
             fill->quantity = order.quantity;
             fill->fillPrice = order.referencePrice;
+            fill->commission = commission;
 
             eventQueue.push(fill);
         }
 
     private:
         EventQueue& eventQueue;
+        double commission;
 };
