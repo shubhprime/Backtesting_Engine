@@ -8,7 +8,7 @@ The engine in itself is nowhere near a real-world working model but is an attemp
 
 The simple skeleton model of the engine is as shown below:
 
-`MarketEvent -> OrderEvent -> FillEvent -> Portfolio`
+`MarketEvent -> SignalEVent -> OrderEvent -> FillEvent -> Portfolio`
 
 As can be seen, the project follows an event-driven pipeline. The strategy reacts to market events, then the orders are executed in the simulator and then the fills update the portfolio and PnL.
 
@@ -24,9 +24,9 @@ As can be seen, the project follows an event-driven pipeline. The strategy react
 
  The analysis is generated from a python script using matplotlib.
 
- The equity is recorded at trade boundaries, that is on fill events. Because equity is recorded on fills rather than daily mark-to-market, the curve exhibits step-like behavior.
+ The equity is recorded at trade boundaries, that is on fill events. Because equity is recorded on fills rather than daily mark-to-market, the curve exhibits a step-like behavior.
 
- ![Equity Curve](equity_curve.png)
+ ![Equity Curve](assets/equity_curve_txnc_enabled.png)
 
  ## How To Run ##
 
@@ -34,12 +34,14 @@ As can be seen, the project follows an event-driven pipeline. The strategy react
 
 ``` bash
 g++ -std=c++17 src/main.cpp src/data/MarketDataHandler.cpp -o engine
+./engine
 ```
 
 ### Analytics ###
 
 Python analytics can be run using a virtual environment:
 ```bash
+source .venv/bin/activate
 python python/analytics.py
 ```
 
