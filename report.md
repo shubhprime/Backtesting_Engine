@@ -1,6 +1,6 @@
 # Event-Driven Backtesting Engine
 
-**Author: Shreyan Kumar**
+**Author: Sheryan Kumar**
 
 **GitHub: https://github.com/shubhprime/Backtesting_Engine**
 

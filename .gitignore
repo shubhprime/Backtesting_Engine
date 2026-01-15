@@ -6,3 +6,4 @@ equity_curve_txnc_disabled.csv
 equity_curve_scaled_txnc_enabled.csv
 __pycache__/
 *.pyc
+report.pdf
