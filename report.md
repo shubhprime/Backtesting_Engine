@@ -1,5 +1,9 @@
 # Event-Driven Backtesting Engine
 
+**Author: Shreyan Kumar**
+
+**GitHub: https://github.com/shubhprime/Backtesting_Engine**
+
 This report provides an analysis and describes the design of an event driven backtesting engine working under a strategy to carry out trades.
 
 The engine follows a clean seperation policy, i.e., provides a seperation between input of market data, signal generation, order creation and transaction execution.
